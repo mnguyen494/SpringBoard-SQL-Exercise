@@ -35,7 +35,7 @@ exploring the data, and getting acquainted with the 3 tables. */
 Write a SQL query to produce a list of the names of the facilities that do. */
 
 A1: 
-SELECT * FROM `Facilities` WHERE membercost >0
+SELECT name FROM `Facilities` WHERE membercost >0
 
 /* Q2: How many facilities do not charge a fee to members? */
 
@@ -225,12 +225,11 @@ GROUP BY f.name
 /* Q13: Find the facilities usage by month, but not guests */
 
 SELECT 
-f.name,
 strftime('%m', b.starttime)  AS Month,
 SUM(b.slots) AS 'Usage'
 FROM Bookings as b
 INNER JOIN Facilities as f
 ON b.facid=f.facid
 WHERE b.memid != 0
-GROUP BY f.name,Month
+GROUP BY Month
 ;
